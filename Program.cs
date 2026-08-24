@@ -56,3 +56,21 @@ Console.WriteLine("--- Resumen de la venta ---");
 Console.WriteLine("Cantidad de productos: " + totalProductos);
 Console.WriteLine("Total de la venta: $" + totalVenta);
 
+const decimal DESCUENTO_10 = 0.10m;
+const decimal DESCUENTO_5 = 0.05m;
+
+decimal descuento = 0;
+
+if (totalVenta > 50000)
+{
+    descuento = totalVenta * DESCUENTO_10;
+}
+else if (totalVenta > 20000)
+{
+    descuento = totalVenta * DESCUENTO_5;
+}
+
+decimal totalConDescuento = totalVenta - descuento;
+
+Console.WriteLine("Descuento aplicado: $" + descuento);
+Console.WriteLine("Total con descuento: $" + totalConDescuento);
