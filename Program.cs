@@ -74,3 +74,65 @@ decimal totalConDescuento = totalVenta - descuento;
 
 Console.WriteLine("Descuento aplicado: $" + descuento);
 Console.WriteLine("Total con descuento: $" + totalConDescuento);
+
+// ── ETAPA 5: Medio de pago ───────────────────────────────────────────────────
+const decimal DESC_EFECTIVO = 0.10m;
+const decimal RECARGO_CREDITO = 0.15m;
+
+int medioPago = 0;
+decimal recargo = 0;
+
+do
+{
+    Console.WriteLine("Medio de pago:");
+    Console.WriteLine("1 - Efectivo");
+    Console.WriteLine("2 - Débito");
+    Console.WriteLine("3 - Crédito");
+    Console.Write("Ingrese una opción: ");
+    medioPago = int.Parse(Console.ReadLine());
+
+    switch (medioPago)
+    {
+        case 1:
+            decimal descEfectivo = totalConDescuento * DESC_EFECTIVO;
+            descuento += descEfectivo;
+            totalConDescuento -= descEfectivo;
+            break;
+
+        case 2:
+            // Débito: sin cambios
+            break;
+
+        case 3:
+            recargo = totalConDescuento * RECARGO_CREDITO;
+            totalConDescuento += recargo;
+            break;
+
+        default:
+            Console.WriteLine("Opción no válida. Intente nuevamente.");
+            Console.WriteLine();
+            break;
+    }
+
+} while (medioPago < 1 || medioPago > 3);
+
+// ── ETAPA 6: Ticket final ────────────────────────────────────────────────────
+Console.WriteLine();
+
+string linea = "";
+for (int i = 0; i < 30; i++)
+    linea += "-";
+
+Console.WriteLine(linea);
+Console.WriteLine($"       OPEN24");
+Console.WriteLine(linea);
+Console.WriteLine($"Cajero: {username}");
+Console.WriteLine($"Productos: {totalProductos}");
+Console.WriteLine($"Subtotal: ${totalVenta}");
+Console.WriteLine($"Descuento: ${descuento}");
+Console.WriteLine($"Recargo: ${recargo}");
+Console.WriteLine(linea);
+Console.WriteLine($"TOTAL: ${totalConDescuento}");
+Console.WriteLine(linea);
+
+Console.ReadLine();
